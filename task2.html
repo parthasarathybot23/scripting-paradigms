@@ -1,0 +1,240 @@
+<!-- TOPIC: Write JavaScript using arrays to store numbers and Display sum and average -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 2</title>
+
+    <style>
+
+        /* universal selector */
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        /* body styling */
+        body{
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #e354ff, #4759ff) ;
+        }
+
+
+        /* Centered box */
+        .input-box{
+            background-color: rgba(255, 255, 255, 0.466);
+            padding: 30px 16px;
+            width: 450px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(255, 0, 149, 0.438);
+
+        }
+
+        /* styling display */
+        .header{
+            color: #2a83be;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;   
+            font-weight: 500;
+            font-size: 30px;  
+        }
+
+        /* styling input box */
+        .num-input{
+            padding: 10px 14px;
+            border-radius: 15px;
+            border: 1.5px solid #ddd;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+
+        .num-input:focus{
+            border-color: #2b66befd;
+        }
+    
+        .add-btn{
+            padding: 10px 15px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            background-color: rgb(221, 50, 221);
+        }
+
+        /* Array display style */
+        .display{
+            font-size: large;
+            margin: 10px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            font-family: "Digital-7", "Orbitron", sans-serif;   
+        }
+
+        /* Action buttons for styling sum and average buttons */
+        .action-btns{
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            align-items: center;
+            border-radius: 10px;
+            background-color: #e218af3f;
+            border: 2.5px solid #e218af;
+            padding: 10px;           
+        }
+
+        /* common styles applicable for both sum and average buttons, both having same class: action */
+        .action{
+            flex: 1;
+            padding: 10px 15px;
+            border-radius: 20px;
+            border: none;
+            cursor: pointer;
+            color: #383838;
+            font-weight: 600;
+            font-size: 15px;
+        }
+
+        .sum-btn{
+            border: 1.2px solid rgb(208, 255, 0);
+            transition: background 0.2s;
+        }
+
+        .sum-btn:hover{
+            background: rgb(230, 255, 117);
+        }
+
+        .avg-btn{
+            border: 1.2px solid orange;
+            transition: background 0.2s;
+        }
+
+        .avg-btn:hover{
+            background: rgb(250, 199, 105);
+        }
+
+        /* Answer display: either sum or average, red color */
+        .result{
+            color: red;
+            font-size: 22px;
+            font-weight: 200;
+        }
+
+        /* clear button --> clears the answer display */
+        .clear-btn{
+            display: block;
+            width: 100%;
+             padding: 10px 15px;
+            border-radius: 15px;
+            border: none;
+            cursor: pointer;
+            background-color: rgb(117, 117, 117);
+            color: white;
+            margin-top: 5px;     
+        }
+
+        /* My student info - at the very bottom, fixed position*/
+        .student-info {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="input-box" id="inputBox">
+        <h1 class="header">Arrays and Number Display</h1><br>
+        <input type="number" class="num-input" id="numInput" placeholder="Enter a Number">
+        <button class="add-btn" id="addBtn">Add</button><br>
+        <h3 class="display" id="arrayDisplay">Array: []</h3><br>
+        
+        <div class="action-btns">
+            <button class="sum-btn action" id="sumBtn">Sum</button>
+            <button class="avg-btn action" id="averageBtn">Average</button>
+        </div><br>
+
+         <input type="button" id="clearBtn" class="clear-btn" value="Clear" onclick="clearValues()"><br>
+
+        <h3 class="result" id="ansDisplay">Answer:</h3><br>
+    </div>
+
+    <div class="student-info">
+        Name: S.PARTHASARATHY &nbsp;|&nbsp; PMIST
+    </div>
+
+    <script>
+        //selecting elements
+        const numInput = document.getElementById("numInput");
+        const addBtn = document.getElementById("addBtn");
+        const arrayDisplay = document.getElementById("arrayDisplay");
+        const sumBtn = document.getElementById("sumBtn");
+        const avgBtn = document.getElementById("averageBtn");
+        const ansDisplay = document.getElementById("ansDisplay");
+
+        //creating an empty array
+        let numbers = [];
+
+        //using addEventListener instead of onclick attribute
+        //ADD BUTTON
+        addBtn.addEventListener("click", function(){
+            const number = numInput.value;
+
+            if(!number.trim()){
+                alert("Please Enter a valid number!!");
+                return;
+            }
+            numbers.push(+number);
+
+            //Make the input box empty after adding
+            numInput.value = ""; 
+
+            arrayDisplay.textContent = `Array: [${numbers.join(",")}]`;    
+        });
+
+        //SUM BUTTON
+        sumBtn.addEventListener("click", function(){
+            if(numbers.length==0){
+                alert("Array is empty!!");
+                return;
+            }
+                let sum = 0
+                numbers.forEach(number => sum += number);
+                
+                ansDisplay.textContent = `Answer: Sum = ${sum}`;
+        });
+
+
+        //AVERAGE BUTTON
+        avgBtn.addEventListener("click", function () {
+        if (numbers.length === 0) {
+        alert("Array is Empty!!");
+        return;
+        }
+
+        let sum = 0;
+        numbers.forEach(number => sum += number);
+
+        const average = (sum / numbers.length).toFixed(2);
+
+        ansDisplay.textContent = `Answer: Average = ${average}`;
+        });
+
+        const clearBtn = document.getElementById("clearBtn");
+
+
+        //CLEAR BUTTON (USING ARROW FUNCTION ES6+ FEATURES)
+        const clearValues = () => {
+            ansDisplay.textContent = "Answer: "
+        }
+    </script>
+    
+</body>
+</html>

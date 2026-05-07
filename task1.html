@@ -1,0 +1,131 @@
+<!-- TOPIC: Design a webpage demonstating CSS positioning and layout principles (header, sidebar, content) -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 1</title>
+
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* body stylling */
+        body{
+            background-color: #f5f5f5;
+             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            color: #333;
+        }
+
+        .title {
+            background-color: #1a1a2e;
+            color: white;
+            padding: 20px 30px;
+            font-size: 18px;
+            letter-spacing: 1px;
+        }
+
+        /* Division containing the sidebar and its list */
+        .box {
+            display: flex;
+            min-height: 90vh;
+        }
+
+        .sidebar {
+            width: 220px;
+            background-color: #ffffff;
+            padding: 25px 20px;
+            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.08);
+            flex-shrink: 1;
+        }
+
+        /* Main content of the page class=body */
+        .body {
+            flex: 1;
+            padding: 30px;
+            background-color: #f5f5f5;
+        }
+
+        /* sidebar styles */
+        .sidebar h3 {
+            font-size: 16px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+        }
+
+        .sidebar ul li {
+            padding: 10px 12px;
+            margin-bottom: 5px;
+            border-radius: 8px;
+            cursor: pointer;
+            color: #555;
+            font-size: 15px;
+            transition: background 0.2s;
+        }
+
+        .sidebar ul li:hover {
+            background-color: #f0f0f0;
+            color: #1a1a2e;
+        }
+
+        .body h2 {
+            font-size: 26px;
+            color: #1a1a2e;
+            margin-bottom: 15px;
+        }
+
+        .body p {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 10px;
+        }
+
+        /* My student info */
+        .student-info {
+            position: fixed;
+            bottom: 15px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(0, 0, 0, 0.644);
+            font-size: 13px;
+            letter-spacing: 1px;
+            font-family: sans-serif;
+        }
+    </style>
+</head>
+<body>
+    <div class="title">
+        <h1>Personal Portfolio Page</h1>
+    </div>
+
+    <div class="box">
+        <div class="sidebar">
+            <h3>Navigation</h3>
+                <ul>
+                    <li>Home</li>
+                    <li>About Us</li>
+                    <li>Projects</li>
+                    <li>Contact</li>
+                </ul>
+        </div>
+
+         <div class="body">
+        <h2>Welcome to my Page</h2>
+        <p>This is my portfolio page where I share about myself, 
+            my experience, achievements etc.. </p>
+    </div>
+    </div>
+
+    <div class="student-info">
+        Name: S.PARTHASARATHY &nbsp;|&nbsp; PMIST
+    </div>
+</body>
+</html>
