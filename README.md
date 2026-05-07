@@ -24,7 +24,8 @@
 6. Hover Effects
 7. Array display
 8. Result display
-9. Custom CSS styling
+9. Checks for empty input or array
+10. Custom CSS styling
    
 #Languages Used:
 1. HTML
